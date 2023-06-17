@@ -1,21 +1,21 @@
-import { useState, ReactElement } from "react";
+import { useState, ReactElement, useContext } from "react";
+import { TodoDispatchContext, useTodoDispatch } from "../App";
 
 //props 타입 정의
-interface Props {
-  onClickAdd: (text: string) => void;
-  //만약 APP부모컴포넌트에서 children을 사용하고 싶다면 children 타입도 정의해줘야 한다.
-  //   children: ReactElement;
-}
+interface Props {}
 
 export default function Editor(props: Props) {
   const [text, setText] = useState("");
+
+  //커스텀훅 불러오기
+  const dispatch = useTodoDispatch();
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
   };
 
   const onClickButton = () => {
-    props.onClickAdd(text);
+    dispatch.onClickAdd(text);
     setText("");
   };
 

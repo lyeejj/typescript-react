@@ -1,13 +1,13 @@
 import { Todo } from "../types";
+import { useTodoDispatch } from "../App";
 
 //Todo타입과 중복되는 것이 있음
-interface Props extends Todo {
-  onClickDelete: (id: number) => void;
-}
+interface Props extends Todo {}
 
 export default function TodoItem(props: Props) {
+  const dispatch = useTodoDispatch();
   const onClickButton = () => {
-    props.onClickDelete(props.id);
+    dispatch.onClickDelete(props.id);
   };
   return (
     <div>
